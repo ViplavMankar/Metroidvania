@@ -1,0 +1,12 @@
+In /maps folder,
+json files are used to know about the colliders.
+png files are exported from tiled and rendered as a single sprite in kaboom.js(it seems to be more performant this way).
+
+k.add -> adds the game object && displays the game object on the UI
+k.make -> adds the game object only but does not display it on UI
+
+async await main function because we want to load the room data asynchronously and it seems we have to 
+use await inside a function only hence main function.
+
+spread operator is used to spread the array contents onto other push() statement or other array,
+spreads the contents of the array and a copy of array content is created in the other array
