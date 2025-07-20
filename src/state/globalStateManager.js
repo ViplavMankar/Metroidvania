@@ -10,7 +10,7 @@ function initStateManager() {
         playerHp: 3,
         maxPlayerHp: 3,
         isDoubleJumpUnlocked: false,
-        playerIsInBossFight: false,
+        playerInBossFight: false,
         isBossDefeated: false,
     }
     return {

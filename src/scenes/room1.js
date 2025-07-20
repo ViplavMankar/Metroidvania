@@ -1,5 +1,6 @@
+import { makeDrone } from "../entities/enemyDrone";
 import { makePlayer } from "../entities/player";
-import { setBackgroundColor, setMapColliders } from "./roomUtils";
+import { setBackgroundColor, setCameraControls, setCameraZones, setMapColliders } from "./roomUtils";
 
 export function room1(k, roomData){
     setBackgroundColor(k,"#a2aed5");
@@ -17,8 +18,13 @@ export function room1(k, roomData){
 
     const colliders = [];
     const positions = [];
+    const cameras = [];
     
     for(const layer of roomLayers){
+        if(layer.name === 'cameras'){
+            cameras.push(...layer.objects);
+        }
+
         if(layer.name === 'positions'){
             positions.push(...layer.objects); // [[1,2,3]] [1,2,3]
             continue;
@@ -30,8 +36,10 @@ export function room1(k, roomData){
     }
     
     setMapColliders(k, map, colliders);
+    setCameraZones(k,map,cameras);
 
     const player = map.add(makePlayer(k));
+    setCameraControls(k, player, map, roomData);
 
     for(const position of positions){
         if(position.name === "player"){
@@ -39,6 +47,12 @@ export function room1(k, roomData){
             player.setControls();
             player.setEvents();
             player.enablePassthrough();
+            continue;
+        }
+        if(position.type === "drone"){
+            const drone = map.add(makeDrone(k, k.vec2(position.x, position.y)));
+            drone.setBehavior();
+            drone.setEvents();
         }
     }
 }
