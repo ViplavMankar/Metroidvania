@@ -1,4 +1,5 @@
-import { state } from "../state/globalStateManager";
+import { state, statePropsEnum } from "../state/globalStateManager";
+import { makeBlink } from "./entitySharedLogic";
 
 export function makePlayer(k,initialPos){
     return k.make([
@@ -104,6 +105,16 @@ export function makePlayer(k,initialPos){
                 )
             },
 
+            disableControls(){
+                for(const handler of this.controlHandlers){
+                    handler.cancel();
+                }
+            },
+
+            respawnIfOutOfBounds(boundValue, destinationName, previousSceneData = {exitName: null}){
+                //TODO
+            },
+
             setEvents(){
                 this.onFall(() => {
                     this.play("fall");
@@ -116,7 +127,28 @@ export function makePlayer(k,initialPos){
                 });
                 this.onHeadbutt(() => {
                     this.play("fall");
-                })
+                });
+                this.on("heal", () => {
+                    state.set(statePropsEnum.playerHp, this.hp());
+                    //TODO: HealthBar logic
+                });
+                this.on("hurt",() => {
+                    makeBlink(k,this);
+                    if(this.hp() > 0){
+                        state.set(statePropsEnum.playerHp, this.hp());
+                        //TODO : Haelthbar update
+                        return;
+                    }
+
+                    k.play("boom");
+                    this.play("explode");
+                    state.set(statePropsEnum.playerHp, state.current().maxPlayerHp);
+                });
+                this.onAnimEnd((anim) => {
+                    if(anim === "explode"){
+                        k.go("room1");
+                    }
+                });
             }
         }
     ]);

@@ -10,3 +10,5 @@ use await inside a function only hence main function.
 
 spread operator is used to spread the array contents onto other push() statement or other array,
 spreads the contents of the array and a copy of array content is created in the other array
+
+tween is like a math function and when paired with k.easings.linear it basically linearly updates value from and to value that is specified.
