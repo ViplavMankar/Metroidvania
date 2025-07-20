@@ -37,13 +37,13 @@ export function makePlayer(k,initialPos){
                 this.controlHandlers = [];
                 this.controlHandlers.push(
                     k.onKeyPress((key) => {
-                        if(key === "x"){
+                        if(key === "space"){
                             if(this.curAnim() !== "jump"){
                                 this.play("jump");
                             }
                             this.doubleJump();
                         }
-                        if(key === "z" 
+                        if(key === "x" 
                             && this.curAnim !== "attack" 
                             && this.isGrounded()){
                             this.isAttacking = true;
