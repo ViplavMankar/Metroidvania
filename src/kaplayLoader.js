@@ -9,9 +9,9 @@ export const k = kaplay({
     global: false
 });
 
-k.loadFont("glyphmesss", "./assets/glyphmesss.ttf");
+k.loadFont("glyphmesss", "./contents/glyphmesss.ttf");
 
-k.loadSprite("player", "./assets/sprites/u.png", {
+k.loadSprite("player", "./contents/sprites/u.png", {
   sliceX: 8,
   sliceY: 9,
   anims: {
@@ -24,7 +24,7 @@ k.loadSprite("player", "./assets/sprites/u.png", {
   },
 });
 
-k.loadSprite("drone", "./assets/sprites/dr0ne.png", {
+k.loadSprite("drone", "./contents/sprites/dr0ne.png", {
   sliceX: 6,
   sliceY: 3,
   anims: {
@@ -34,7 +34,7 @@ k.loadSprite("drone", "./assets/sprites/dr0ne.png", {
   },
 });
 
-k.loadSprite("burner", "./assets/sprites/burn3r.png", {
+k.loadSprite("burner", "./contents/sprites/burn3r.png", {
   sliceX: 5,
   sliceY: 6,
   anims: {
@@ -47,7 +47,7 @@ k.loadSprite("burner", "./assets/sprites/burn3r.png", {
   },
 });
 
-k.loadSpriteAtlas("./assets/ui.png", {
+k.loadSpriteAtlas("./contents/ui.png", {
   healthBar: {
     x: 16,
     y: 16,
@@ -57,7 +57,7 @@ k.loadSpriteAtlas("./assets/ui.png", {
   },
 });
 
-k.loadSpriteAtlas("./assets/animations.png", {
+k.loadSpriteAtlas("./contents/animations.png", {
   cartridge: {
     x: 125,
     y: 145,
@@ -70,20 +70,20 @@ k.loadSpriteAtlas("./assets/animations.png", {
   },
 });
 
-k.loadSprite("tileset", "./assets/tileset.png", {
+k.loadSprite("tileset", "./contents/tileset.png", {
   sliceX: 33,
   sliceY: 21,
 });
 
-k.loadSprite("background", "./assets/background.png", {
+k.loadSprite("background", "./contents/background.png", {
   sliceX: 13,
   sliceY: 25,
 });
 
-k.loadSound("notify", "./assets/sounds/notify.mp3");
-k.loadSound("boom", "./assets/sounds/boom.wav");
-k.loadSound("health", "./assets/sounds/health.wav");
-k.loadSound("flamethrower", "./assets/sounds/flamethrower.mp3");
+k.loadSound("notify", "./contents/sounds/notify.mp3");
+k.loadSound("boom", "./contents/sounds/boom.wav");
+k.loadSound("health", "./contents/sounds/health.wav");
+k.loadSound("flamethrower", "./contents/sounds/flamethrower.mp3");
 
 k.loadSprite("room1", "./maps/room1.png");
 k.loadSprite("room2", "./maps/room2.png");

@@ -6,7 +6,7 @@ import { state } from "../state/globalStateManager";
 import { healthBar } from "../ui/healthBar";
 import { setBackgroundColor, setCameraControls, setCameraZones, setExitZones, setMapColliders } from "./roomUtils";
 
-export function room1(k, roomData,previousSceneData){
+export function room1(k, roomData,previousSceneData = {exitName: null}){
     setBackgroundColor(k,"#a2aed5");
 
     k.camScale(4);
