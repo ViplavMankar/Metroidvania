@@ -1,10 +1,12 @@
 import { makeBoss } from "../entities/enemyBoss";
 import { makeDrone } from "../entities/enemyDrone";
+import { makeCartridge } from "../entities/healthCartridge";
 import { makePlayer } from "../entities/player";
 import { state } from "../state/globalStateManager";
+import { healthBar } from "../ui/healthBar";
 import { setBackgroundColor, setCameraControls, setCameraZones, setMapColliders } from "./roomUtils";
 
-export function room1(k, roomData){
+export function room1(k, roomData,previousSceneData){
     setBackgroundColor(k,"#a2aed5");
 
     k.camScale(4);
@@ -49,6 +51,7 @@ export function room1(k, roomData){
             player.setControls();
             player.setEvents();
             player.enablePassthrough();
+            player.respawnIfOutOfBounds(1000,"room1");
             continue;
         }
         if(position.type === "drone"){
@@ -61,6 +64,13 @@ export function room1(k, roomData){
             const boss = map.add(makeBoss(k,k.vec2(position.x,position.y)));
             boss.setBehavior();
             boss.setEvents();
+            continue;
+        }
+        if(position.type === "cartridge"){
+            map.add(makeCartridge(k,k.vec2(position.x, position.y)));
         }
     }
+    healthBar.setEvents();
+    healthBar.trigger("update");
+    k.add(healthBar);
 }

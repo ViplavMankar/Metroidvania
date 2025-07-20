@@ -1,4 +1,5 @@
 import { state, statePropsEnum } from "../state/globalStateManager";
+import { healthBar } from "../ui/healthBar";
 import { makeBlink } from "./entitySharedLogic";
 
 export function makePlayer(k,initialPos){
@@ -112,7 +113,11 @@ export function makePlayer(k,initialPos){
             },
 
             respawnIfOutOfBounds(boundValue, destinationName, previousSceneData = {exitName: null}){
-                //TODO
+                k.onUpdate(() => {
+                    if(this.pos.y > boundValue){
+                        k.go(destinationName, previousSceneData);
+                    }
+                });
             },
 
             setEvents(){
@@ -130,13 +135,13 @@ export function makePlayer(k,initialPos){
                 });
                 this.on("heal", () => {
                     state.set(statePropsEnum.playerHp, this.hp());
-                    //TODO: HealthBar logic
+                    healthBar.trigger("update");
                 });
                 this.on("hurt",() => {
                     makeBlink(k,this);
                     if(this.hp() > 0){
                         state.set(statePropsEnum.playerHp, this.hp());
-                        //TODO : Haelthbar update
+                        healthBar.trigger("update");
                         return;
                     }
 
