@@ -149,6 +149,10 @@ export function makePlayer(k,initialPos){
                         k.go("room1");
                     }
                 });
+            },
+
+            enableDoubleJump(){
+                this.numJumps = 2;
             }
         }
     ]);
